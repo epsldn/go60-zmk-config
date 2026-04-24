@@ -23,6 +23,7 @@ jobs:
       - name: Build
         run: |
           west build -s zmk/app -b ${{ matrix.board }} -- \
+          -DCONFIG_USB_DEVICE_PID=0x6061 \
           -DKEYMAP_FILE="$PWD/config/go60.keymap" \
           -DEXTRA_CONF_FILE="$PWD/config/go60.conf"
       - name: Rename Artifact
