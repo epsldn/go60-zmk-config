@@ -12,3 +12,23 @@ manifest:
     - name: zmk-input-gestures
       remote: halfdane
       revision: main
+
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url_base: https://github.com/zmkfirmware
+    - name: halfdane
+      url_base: https://github.com/halfdane
+    - name: kbrd-space
+      url_base: https://github.com/kbrd-space
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
+    - name: zmk-input-gestures
+      remote: halfdane
+      revision: main
+    - name: zmk-anti-idle
+      remote: kbrd-space
+      revision: main
