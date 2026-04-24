@@ -1,11 +1,43 @@
-name: Build Go60
+name: Manual ZMK Build
 
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      build_matrix: |
-        - board: go60_lh
-        - board: go60_rh
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    strategy:
+      fail-fast: false
+      matrix:
+        board: [go60_lh, go60_rh]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache west modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            modules
+            tools
+            zephyr
+            bootloader
+            zmk
+          key: ${{ runner.os }}-west-${{ hashFiles('**/west.yml') }}
+          restore-keys: ${{ runner.os }}-west-
+      - name: West Init
+        run: west init -l config
+      - name: West Update
+        run: west update
+      - name: West Zephyr export
+        run: west zephyr-export
+      - name: Build
+        run: |
+          west build -s zmk/app -b ${{ matrix.board }} -- -DZEPHYR_MODULES="/github/workspace/modules/input/zmk-input-gestures;/github/workspace/modules/lib/zmk-anti-idle" -DKEYMAP_FILE="/github/workspace/config/go60.keymap" -DEXTRA_CONF_FILE="/github/workspace/config/go60.conf"
+      - name: Rename
+        run: cp build/zephyr/zmk.uf2 ${{ matrix.board }}.uf2
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: "*.uf2"
