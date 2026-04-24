@@ -170,7 +170,6 @@
         compatible = "zmk,anti-idle-generic";
         interval-ms = <60000>;
         bindings = <&mmv MOVE_Y(1)>, <&mmv MOVE_Y(-1)>;
-        tap-ms = <10>;
     };
 };
 
