@@ -14,8 +14,8 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
-/* Define the Right-Click Mapper Label at the Root Level */
 / {
+    /* Define nodes at the root to ensure labels are visible */
     zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
         compatible = "zmk,input-processor-code-mapper";
         #input-processor-cells = <0>;
@@ -30,6 +30,7 @@
     };
 
     macros {
+        /* Visual Jiggler Toggle (Blue Flash) */
         jigg_tg: jigg_tg {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -54,7 +55,7 @@
     };
 };
 
-/* --- INPUT OVERRIDES --- */
+/* --- INPUT TUNING --- */
 &zip_gestures {
     inertial-cursor;
     inertial-cursor-decay-percent = <98>;
