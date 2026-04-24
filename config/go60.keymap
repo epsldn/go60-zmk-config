@@ -30,6 +30,19 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
 
+/* Trackpad Tuning for Index Finger + 16" MBP */
+&cirque_lh_listener {
+    input-processors = <&zip_xy_scaler 2 1>; // 2x speed for high-res screens
+    inertial-cursor;
+    inertial-cursor-decay-percent = <98>;    // 98% = heavy "trackball" inertia
+};
+
+&cirque_rh_listener {
+    input-processors = <&zip_xy_scaler 2 1>;
+    inertial-cursor;
+    inertial-cursor-decay-percent = <98>;
+};
+
 /* Helper Macros, based on https://github.com/urob/zmk-helpers/ */
 
 #pragma once
