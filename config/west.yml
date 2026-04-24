@@ -1,6 +1,8 @@
 manifest:
   remotes:
-    - name: moergo
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: moergo-sc
       url-base: https://github.com/moergo-sc
     - name: halfdane
       url-base: https://github.com/halfdane
@@ -8,7 +10,7 @@ manifest:
       url-base: https://github.com/kbrd-space
   projects:
     - name: zmk
-      remote: moergo
+      remote: moergo-sc
       revision: main
       import: app/west.yml
     - name: zmk-input-gestures
