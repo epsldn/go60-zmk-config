@@ -406,7 +406,7 @@ endif {
         layer_Mouse {
             bindings = <
 &trans  &trans     &trans     &trans     &trans     &trans                                                     &trans    &trans        &trans        &trans     &trans  &trans
-&trans  &trans     &kp LG(W)  &trans     &trans     &kp LG(T)                                                  &trans    &kp C_VOL_DN  &kp C_VOL_UP  &trans     &trans  &trans
+&trans  &trans     &kp LG(W)  &trans     &trans     &kp LG(T)                                                  &aim AIM_TOG    &kp C_VOL_DN  &kp C_VOL_UP  &trans     &trans  &trans
 &trans  &kp LG(A)  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans                                                     &kp LEFT  &kp DOWN      &kp UP        &kp RIGHT  &trans  &trans
 &trans  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &trans                                                     &trans    &trans        &trans        &trans     &trans  &trans
                    &trans     &trans     &trans                                                                          &trans        &trans        &trans
