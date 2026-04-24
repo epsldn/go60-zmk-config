@@ -23,11 +23,12 @@ jobs:
       - name: Build
         run: |
           west build -s zmk/app -b ${{ matrix.board }} -- \
-          -DZEPHYR_EXTRA_MODULES="$PWD/zmk-input-gestures;$PWD/zmk-anti-idle" \
           -DKEYMAP_FILE="$PWD/config/go60.keymap" \
           -DEXTRA_CONF_FILE="$PWD/config/go60.conf"
+      - name: Rename Artifacts
+        run: cp build/zephyr/zmk.uf2 ${{ matrix.board }}.uf2
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.board }}
-          path: build/zephyr/zmk.uf2
+          name: firmware
+          path: "*.uf2"
