@@ -1,11 +1,11 @@
 manifest:
   remotes:
     - name: moergo
-      url_base: https://github.com/moergo-sc
+      url-base: https://github.com/moergo-sc
     - name: halfdane
-      url_base: https://github.com/halfdane
+      url-base: https://github.com/halfdane
     - name: kbrd-space
-      url_base: https://github.com/kbrd-space
+      url-base: https://github.com/kbrd-space
   projects:
     - name: zmk
       remote: moergo
