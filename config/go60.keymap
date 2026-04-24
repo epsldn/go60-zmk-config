@@ -15,7 +15,6 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
-    /* Global labels defined at the root for compiler visibility */
     zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
         compatible = "zmk,input-processor-code-mapper";
         #input-processor-cells = <0>;
@@ -30,22 +29,21 @@
     };
 
     macros {
-        /* Macro: Start Jiggler, LEDs Blue, Lock Layer 6 */
         jigg_on: jigg_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <40>;
             tap-ms = <40>;
-            bindings = <&aim AIM_ON>, <&rgb_ug RGB_COLOR_HSB(240,100,100)>, <&rgb_ug RGB_ON>, <&tog 6>;
+            bindings = <&aim AIM_ON>, <&rgb_ug RGB_COLOR_HSB(240,100,100)>, <&tog 6>;
         };
 
-        /* Macro: Stop Jiggler, LEDs OFF, Unlock Layer 6 */
         jigg_off: jigg_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <40>;
             tap-ms = <40>;
-            bindings = <&aim AIM_OFF>, <&rgb_ug RGB_OFF>, <&tog 6>;
+            /* Returns the board to the 50% brightness White backdrop */
+            bindings = <&aim AIM_OFF>, <&rgb_ug RGB_COLOR_HSB(0,0,50)>, <&tog 6>;
         };
 
         rgb_ug_status_macro: rgb_ug_status_macro {
@@ -67,14 +65,16 @@
     };
 };
 
-/* --- INPUT CONFIGURATION --- */
+/* --- INPUT TUNING --- */
 &zip_gestures {
     inertial-cursor;
-    inertial-cursor-decay-percent = <98>;
+    /* 99% decay retains significantly more momentum per tick for long, glass-like glides */
+    inertial-cursor-decay-percent = <99>;
 };
 
 &cirque_lh_listener {
-    input-processors = <&zip_xy_scaler 11 12>, 
+    /* Lowered to 1/3 scale to drastically reduce the high scroll speed */
+    input-processors = <&zip_xy_scaler 1 3>, 
                        <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>, 
                        <&zip_xy_to_scroll_mapper>, 
                        <&zip_click_to_right_click_mapper>,
@@ -119,7 +119,6 @@
         layer_Factory { bindings = <&kp N0 &kp N4 &kp N8 &kp N3 &kp N8 &kp N3 &kp N3 &kp N8 &kp N3 &kp N8 &kp N4 &kp N0 &kp N1 &kp N5 &kp N9 &kp N4 &kp N9 &kp N4 &kp N4 &kp N9 &kp N4 &kp N9 &kp N5 &kp N1 &kp N2 &kp N6 &kp N0 &kp N5 &kp N0 &kp N5 &kp N5 &kp N0 &kp N5 &kp N0 &kp N6 &kp N2 &kp N3 &kp N7 &kp N1 &kp N6 &kp N1 &kp N6 &kp N6 &kp N1 &kp N6 &kp N1 &kp N7 &kp N3 &kp N2 &kp N7 &kp N2 &kp N2 &kp N7 &kp N2 &kp N7 &kp N8 &kp N9 &kp N9 &kp N8 &kp N7>; };
         
         layer_Jiggle {
-            /* Transparent mask. Tap Y (jigg_off) to return to Base. */
             bindings = <
  &trans &trans &trans &trans &trans &trans                                                    &trans    &trans &trans &trans &trans &trans
  &trans &trans &trans &trans &trans &trans                                                    &jigg_off &trans &trans &trans &trans &trans
