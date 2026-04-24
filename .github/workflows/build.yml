@@ -32,4 +32,3 @@ jobs:
         with:
           name: ${{ matrix.board }}
           path: ${{ matrix.board }}.uf2
-
