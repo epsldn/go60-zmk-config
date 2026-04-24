@@ -335,7 +335,7 @@
         layer_Mouse {
             bindings = <
  &trans     &trans     &trans     &trans     &trans     &trans                                                    &trans        &trans        &trans     &trans  &trans  &trans
- &trans     &trans  &kp LG(W)     &trans     &trans  &kp LG(T)                                                    &trans  &kp C_VOL_DN  &kp C_VOL_UP     &trans  &trans  &trans
+ &trans     &trans  &kp LG(W)     &trans     &trans  &kp LG(T)                                                    &aim AIM_TOG  &kp C_VOL_DN  &kp C_VOL_UP     &trans  &trans  &trans
  &trans  &kp LG(A)  &mkp RCLK  &mkp MCLK  &mkp LCLK     &trans                                                  &kp LEFT      &kp DOWN        &kp UP  &kp RIGHT  &trans  &trans
  &trans  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)     &trans                                                    &trans        &trans        &trans     &trans  &trans  &trans
                        &trans     &trans     &trans                                                                             &trans        &trans     &trans
@@ -345,7 +345,7 @@
 
         layer_Magic {
             bindings = <
-  &bt BT_CLR     &kp C_BRI_DN     &kp C_BRI_UP       &kp C_PREV       &kp C_NEXT         &kp C_PP                                                  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP   &none   &aim AIM_TOG     &bt BT_CLR_ALL
+  &bt BT_CLR     &kp C_BRI_DN     &kp C_BRI_UP       &kp C_PREV       &kp C_NEXT         &kp C_PP                                                  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP   &none          &none     &bt BT_CLR_ALL
  &bootloader  &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                       &none         &none         &none   &none          &none        &bootloader
   &sys_reset  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                       &none         &none         &none   &none          &none         &sys_reset
        &none            &none            &bt_0            &bt_1            &bt_2            &bt_3                                                       &none         &none         &none   &none          &none  &to LAYER_Factory
