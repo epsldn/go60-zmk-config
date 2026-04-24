@@ -25,10 +25,11 @@ jobs:
           west build -s zmk/app -b ${{ matrix.board }} -- \
           -DKEYMAP_FILE="$PWD/config/go60.keymap" \
           -DEXTRA_CONF_FILE="$PWD/config/go60.conf"
-      - name: Rename Artifacts
+      - name: Rename Artifact
         run: cp build/zephyr/zmk.uf2 ${{ matrix.board }}.uf2
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
-          path: "*.uf2"
+          name: ${{ matrix.board }}
+          path: ${{ matrix.board }}.uf2
+
