@@ -14,20 +14,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: West Init
         run: west init -l config
+      
       - name: West Update
         run: west update
+      
       - name: West Zephyr export
         run: west zephyr-export
+      
       - name: Build
         run: |
           west build -s zmk/app -b ${{ matrix.board }} -- \
-          -DCONFIG_USB_DEVICE_PID=0x6061 \
+          -DCONFIG_USB_DEVICE_VID=0x1209 \
+          -DCONFIG_USB_DEVICE_PID=0x6062 \
           -DKEYMAP_FILE="$PWD/config/go60.keymap" \
           -DEXTRA_CONF_FILE="$PWD/config/go60.conf"
+      
       - name: Rename Artifact
         run: cp build/zephyr/zmk.uf2 ${{ matrix.board }}.uf2
+      
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
