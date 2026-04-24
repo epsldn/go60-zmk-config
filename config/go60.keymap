@@ -34,8 +34,10 @@
         jigg_tg: jigg_tg {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&aim AIM_TOG>, <&rgb_ug RGB_COLOR_HSB(240,100,100)>, <&wait_ms 100>, <&rgb_ug RGB_OFF>;
+            wait-ms = <150>; /* This is the correct ZMK way to add delay between bindings */
+            bindings = <&aim AIM_TOG>, <&rgb_ug RGB_COLOR_HSB(240,100,100)>, <&rgb_ug RGB_OFF>;
         };
+
         rgb_ug_status_macro: rgb_ug_status_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
