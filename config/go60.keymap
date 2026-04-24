@@ -27,30 +27,10 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <behaviors/anti_idle_mode.dtsi>
 #include <dt-bindings/anti_idle_mode.h>
+#include <behaviors/input_processor_gestures.dtsi>
+
 
 /* Trackpad Tuning for Index Finger + 16" MBP */
-
-&cirque_lh_listener {
-    input-processors = <&zip_xy_scaler 2 1>; // 2x speed for high-res screens
-    inertial-cursor;
-    inertial-cursor-decay-percent = <98>;    // 98% = heavy "trackball" inertia
-};
-
-&cirque_rh_listener {
-    input-processors = <&zip_xy_scaler 2 1>;
-    inertial-cursor;
-    inertial-cursor-decay-percent = <98>;
-};
-
-/ {
-    anti_idle {
-        compatible = "zmk,anti-idle-generic";
-        interval-ms = <60000>; // Every 60 seconds
-        bindings = <&mmv MOVE_DOWN &mmv MOVE_UP>;
-        tap-ms = <10>;
-    };
-};
-
 
 
 /* Helper Macros, based on https://github.com/urob/zmk-helpers/ */
@@ -343,6 +323,28 @@ endif {
 / {
 
 };
+
+&cirque_lh_listener {
+    input-processors = <&zip_xy_scaler 2 1 &zip_gestures>;
+    inertial-cursor;
+    inertial-cursor-decay-percent = <98>;
+};
+
+&cirque_rh_listener {
+    input-processors = <&zip_xy_scaler 2 1 &zip_gestures>;
+    inertial-cursor;
+    inertial-cursor-decay-percent = <98>;
+};
+
+/ {
+    anti_idle {
+        compatible = "zmk,anti-idle-generic";
+        interval-ms = <60000>;
+        bindings = <&mmv MOVE_DOWN>, <&mmv MOVE_UP>;
+        tap-ms = <10>;
+    };
+};
+
 
 /* Automatically generated macro definitions */
 / {
