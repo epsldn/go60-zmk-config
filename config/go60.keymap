@@ -15,6 +15,7 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
+    /* Root-level node definitions for global visibility */
     zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
         compatible = "zmk,input-processor-code-mapper";
         #input-processor-cells = <0>;
@@ -117,7 +118,7 @@
         layer_Factory { bindings = <&kp N0 &kp N4 &kp N8 &kp N3 &kp N8 &kp N3 &kp N3 &kp N8 &kp N3 &kp N8 &kp N4 &kp N0 &kp N1 &kp N5 &kp N9 &kp N4 &kp N9 &kp N4 &kp N4 &kp N9 &kp N4 &kp N9 &kp N5 &kp N1 &kp N2 &kp N6 &kp N0 &kp N5 &kp N0 &kp N5 &kp N5 &kp N0 &kp N5 &kp N0 &kp N6 &kp N2 &kp N3 &kp N7 &kp N1 &kp N6 &kp N1 &kp N6 &kp N6 &kp N1 &kp N6 &kp N1 &kp N7 &kp N3 &kp N2 &kp N7 &kp N2 &kp N2 &kp N7 &kp N2 &kp N7 &kp N8 &kp N9 &kp N9 &kp N8 &kp N7>; };
         
         layer_Jiggle {
-            /* This is a transparent mask. The ONLY active key is jigg_off directly over jigg_on */
+            /* Transparent mask. The ONLY active key is jigg_off directly over where jigg_on was */
             bindings = <
  &trans &trans &trans &trans &trans &trans                                                    &trans    &trans &trans &trans &trans &trans
  &trans &trans &trans &trans &trans &trans                                                    &jigg_off &trans &trans &trans &trans &trans
