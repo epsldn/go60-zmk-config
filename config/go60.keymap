@@ -42,6 +42,17 @@
     inertial-cursor-decay-percent = <98>;
 };
 
+/ {
+    anti_idle {
+        compatible = "zmk,anti-idle-generic";
+        interval-ms = <60000>; // Every 60 seconds
+        bindings = <&mmv MOVE_DOWN &mmv MOVE_UP>;
+        tap-ms = <10>;
+    };
+};
+
+
+
 /* Helper Macros, based on https://github.com/urob/zmk-helpers/ */
 
 #pragma once
