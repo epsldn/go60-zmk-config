@@ -21,7 +21,11 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
       - name: Build
-        run: west build -s zmk/app -b ${{ matrix.board }} -- -DKEYMAP_FILE="$PWD/config/go60.keymap" -DEXTRA_CONF_FILE="$PWD/config/go60.conf"
+        run: |
+          west build -s zmk/app -b ${{ matrix.board }} -- \
+          -DZEPHYR_EXTRA_MODULES="$PWD/zmk-input-gestures;$PWD/zmk-anti-idle" \
+          -DKEYMAP_FILE="$PWD/config/go60.keymap" \
+          -DEXTRA_CONF_FILE="$PWD/config/go60.conf"
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
