@@ -23,10 +23,17 @@
     anti_idle {
         compatible = "zmk,anti-idle-generic";
         interval-ms = <60000>;
-        bindings = <&mmv MOVE_Y(1)>, <&mmv MOVE_Y(-1)>;
+        bindings = <&jigg_action>;
     };
 
     macros {
+        jigg_action: jigg_action {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <50>;
+            bindings = <&mmv MOVE_Y(20)>, <&mmv MOVE_Y(-20)>;
+        };
+
         jigg_on: jigg_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
