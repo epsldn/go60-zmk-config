@@ -42,7 +42,7 @@
             #binding-cells = <0>;
             wait-ms = <40>;
             tap-ms = <40>;
-            /* Returns the board to the 40% brightness White backdrop */
+            /* Restores the 40% White backdrop when toggled off */
             bindings = <&aim AIM_OFF>, <&rgb_ug RGB_COLOR_HSB(0,0,40)>, <&tog 6>;
         };
 
@@ -68,13 +68,14 @@
 /* --- INPUT TUNING --- */
 &zip_gestures {
     inertial-cursor;
-    /* 99% decay retains significantly more momentum per tick for long glides */
+    /* 99% maintains momentum; initial-velocity-multiplier ensures the flick starts strong */
     inertial-cursor-decay-percent = <99>;
+    inertial-cursor-initial-velocity-multiplier = <200>;
 };
 
 &cirque_lh_listener {
-    /* Scaled down to 1/3 to drastically reduce the high scroll speed */
-    input-processors = <&zip_xy_scaler 1 3>, 
+    /* 1 25 scale drastically reduces scroll sensitivity for the left pad */
+    input-processors = <&zip_xy_scaler 1 25>, 
                        <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>, 
                        <&zip_xy_to_scroll_mapper>, 
                        <&zip_click_to_right_click_mapper>,
