@@ -29,6 +29,7 @@
     };
 
     macros {
+        /* Starts Jiggler + Blue Lights + Lock Layer 6 */
         jigg_on: jigg_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -37,12 +38,12 @@
             bindings = <&aim AIM_ON>, <&rgb_ug RGB_COLOR_HSB(240,100,100)>, <&tog 6>;
         };
 
+        /* Stops Jiggler + Returns to White Backdrop + Unlock Layer 6 */
         jigg_off: jigg_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <40>;
             tap-ms = <40>;
-            /* Restores the 40% White backdrop when toggled off */
             bindings = <&aim AIM_OFF>, <&rgb_ug RGB_COLOR_HSB(0,0,40)>, <&tog 6>;
         };
 
@@ -68,13 +69,12 @@
 /* --- INPUT TUNING --- */
 &zip_gestures {
     inertial-cursor;
-    /* 99% maintains momentum; initial-velocity-multiplier ensures the flick starts strong */
+    /* 99% maintains momentum for long glides across the 16-inch screen */
     inertial-cursor-decay-percent = <99>;
-    inertial-cursor-initial-velocity-multiplier = <200>;
 };
 
 &cirque_lh_listener {
-    /* 1 25 scale drastically reduces scroll sensitivity for the left pad */
+    /* Set to 1/25th to drastically reduce scroll sensitivity */
     input-processors = <&zip_xy_scaler 1 25>, 
                        <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>, 
                        <&zip_xy_to_scroll_mapper>, 
@@ -98,7 +98,7 @@
             &kp LSHFT   &kp A      &kp S     &kp D     &kp F   &kp G                                                                                                                                            &kp H     &kp J      &kp K      &kp L  &kp SEMI  &mt RSHFT SQT
  &magic 4 0             &kp Z      &kp X     &kp C     &kp V   &kp B                                                                                                                                            &kp N     &kp M  &kp COMMA    &kp DOT  &kp FSLH     &kp LC(UP)
                                &kp LCTRL  &kp LALT  &kp LGUI                                                                                                                                                           &kp RGUI   &kp RALT  &kp RCTRL
-                                                                      &lt 2 ESC  &lt 1 BSPC  &lt 3 DEL  &lt 3 RET  &lt 1 SPACE  &lt 2 RET
+                                                                      &lt 1 BSPC  &lt 2 ESC  &lt 3 DEL  &lt 3 RET  &lt 1 SPACE  &lt 2 RET
             >;
         };
 
