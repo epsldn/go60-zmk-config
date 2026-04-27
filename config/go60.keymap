@@ -28,7 +28,8 @@
 
     anti_idle {
         compatible = "zmk,anti-idle-generic";
-        interval-ms = <20000>;
+        /* TEMPORARY TEST: 5 seconds (5000ms). Change back to 60000+ after testing! */
+        interval-ms = <5000>;
         bindings = <&jigg_action>;
     };
 
@@ -36,8 +37,12 @@
         jigg_action: jigg_action {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
+            /* Hold the movement for 200ms so the ZMK polling thread catches it */
+            tap-ms = <200>; 
+            /* Wait 1 full second between movements */
             wait-ms = <1000>;
-            bindings = <&mmv MOVE_Y(50) &mmv MOVE_Y(-50)>;
+            /* Separated by commas to ensure they execute as sequential, distinct steps */
+            bindings = <&mmv MOVE_Y(50)>, <&mmv MOVE_Y(-50)>;
         };
 
         jigg_on: jigg_on {
@@ -90,8 +95,6 @@
 
 &zip_gestures {
     inertial-cursor;
-
-    /* Increased to 80 for slightly more glide with the 5x scaler */
     inertial-cursor-decay-percent = <80>;
 };
 
@@ -107,8 +110,8 @@
 };
 
 &cirque_rh_listener {
-    /* Set to a 5x multiplier for 4K display usage */
-    input-processors = <&zip_xy_scaler 5 1>, <&zip_gestures>;
+    /* Dialed into 4 for the perfect speed balance */
+    input-processors = <&zip_xy_scaler 4 1>, <&zip_gestures>;
 };
 
 /* --- KEYMAP --- */
