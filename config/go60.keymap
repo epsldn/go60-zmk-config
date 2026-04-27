@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/anti_idle_mode.dtsi>
 #include <dt-bindings/anti_idle_mode.h>
@@ -85,9 +91,8 @@
 &zip_gestures {
     inertial-cursor;
 
-    /* Verified Halfdane property. 99 is maximum stable momentum */
-
-    inertial-cursor-decay-percent = <99>;
+    /* Reduced from 99 to 70. This prevents liftoff snapback while accommodating the new, faster scaler. */
+    inertial-cursor-decay-percent = <70>;
 };
 
 &cirque_lh_listener {
@@ -102,8 +107,8 @@
 };
 
 &cirque_rh_listener {
-    /* Increased multiplier to 3 for faster cursor movement. Change to 4 or 5 if still too slow. */
-    input-processors = <&zip_xy_scaler 3 1>, <&zip_gestures>;
+    /* Increased multiplier to 12 to provide the travel speed needed for a 4K display. */
+    input-processors = <&zip_xy_scaler 12 1>, <&zip_gestures>;
 };
 
 /* --- KEYMAP --- */
