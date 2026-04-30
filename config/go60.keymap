@@ -110,8 +110,11 @@
 };
 
 &cirque_rh_listener {
-    /* Dialed into 4 for the perfect speed balance */
-    input-processors = <&zip_xy_scaler 4 1>, <&zip_gestures>;
+    input-processors = 
+        /* ADDED: Smooths the last 3 samples to filter out the jagged liftoff noise before it scales */
+        <&zip_xy_smoothing 3>,
+        <&zip_xy_scaler 4 1>, 
+        <&zip_gestures>;
 };
 
 /* --- KEYMAP --- */
