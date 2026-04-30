@@ -107,9 +107,9 @@
             label = "HOME_ROW_MOD_SHIFT";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <200>; 
+            tapping-term-ms = <175>; 
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <75>;
+            /* require-prior-idle-ms completely removed for raw speed */
             bindings = <&kp>, <&kp>;
         };
     };
@@ -211,8 +211,6 @@
         };
 
         layer_Jiggle {
-            /* Transparent mask. Tap Y (jigg_off) to return to Base. */
-
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                                                                                                      &trans     &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans                                                                                                      &jigg_off  &trans  &trans  &trans  &trans  &trans
